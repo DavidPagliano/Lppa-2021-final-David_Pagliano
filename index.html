@@ -5,43 +5,70 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Lppa_final</title>
+        <!-- Style -->
+        <link rel="stylesheet" href="css/resets/reset.css">
+        <link rel="stylesheet" href="css/body.css">
+        <link rel="stylesheet" href="css/header.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/game.css">
+        <link rel="stylesheet" href="css/contact.css">
+
+        <!--Scritp-->
+        <script src="js/validation.js"></script>
+        <script src="js/game.js"></script>
+        <script src="js/boardp2.js"></script>
+        <script src="js/boardp3.js"></script>
+        <script src="js/players.js"></script>
+
     </head>
     <body>
-        <div class="header">
-            <h1>Connect 4</h1>
-            <div class="nav">
-                <div id="buttonH" class="game"></div>
-                <div id="buttonH" class="game information"></div>
-                <div id="buttonH" class="contact"></div>
-            </div>
-        </div>
-        <div class="main">
-            <div class="games">
-                <div id="menu" class="menu">
-                    <div class="Player single" id="buttonV"></div>
-                    <div class="Multiplayers" id="buttonV">
-                        <div id="sub-menu" class="sub-menu">
-                            <div class="2 players" id="buttonV"></div>
-                            <div class="3 players" id="buttonV"></div>
+        <div class="container">
+            <section>
+                <div class="header">
+                    <h1>Connect 4</h1>
+                    <div class="nav">
+                        <div id="buttonH" class="game">gamg</div>
+                        <div id="buttonH" class="game information">game information</div>
+                        <div id="buttonH" class="contact">contact</div>
+                    </div>
+                </div>    
+            </section>
+            
+            <section>
+                <div class="main">
+                    <div class="games">
+                        <div id="menu" class="menu">
+                            <div class="Multiplayers" id="buttonV">
+                                <div id="sub-menu" class="sub-menu">
+                                    <div class="2 players" id="buttonV">2 players</div>
+                                    <div class="3 players" id="buttonV">3 players</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <div class="game">
+                        <div class="timeplayer" id="timer">00:00</div>
+                        <div class="board"></div>
+                        <div class="player1" id="p1"></div>
+                        <div class="player2" id="p2"></div>
+                        <div class="player3" id="p3"></div>
+                    </div>
+                    <div class="contact">
+                        <form>
+                            <input type="text" name="Name" value="name">
+                            <input type="text" name="Email" value="email">
+                            <input type="text" name="Message" value="message">
+                        </form>
+                    </div>
                 </div>
-            </div>
-            <div class="game">
-                <div class="board"></div>
-            </div>
-            <div class="contact">
-                <form>
-                    <input type="text" name="Name">
-                    <input type="text" name="Email">
-                    <input type="text" name="Message">
-                </form>
-            </div>
-        </div>
-        <div class="footer">
-            <div id="logo" class="logo"></div>
-            <div id="logo" class="logo1"></div>
-            <div id="logo" class="logo2"></div>
+            </section>
+            <section>
+                <div class="footer">
+                    <div id="logo" class="logo"></div>
+                    <div id="logo" class="logo1"></div>
+                    <div id="logo" class="logo2"></div>
+                </div>
+            </section>
         </div>
     </body>
 </html>
