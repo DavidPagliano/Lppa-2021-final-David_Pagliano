@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Lppa_final</title>
+        <title>connect4</title>
         <!-- Style -->
         <link rel="stylesheet" href="css/resets/reset.css">
         <link rel="stylesheet" href="css/body.css">
@@ -16,6 +16,7 @@
         <!--Scritp-->
         <script src="js/validation.js"></script>
         <script src="js/game.js"></script>
+        <script src="js/information.js"></script>
         <script src="js/boardp2.js"></script>
         <script src="js/boardp3.js"></script>
         <script src="js/players.js"></script>
@@ -23,46 +24,74 @@
     </head>
     <body>
         <div class="container">
-            <section>
+            <section id="header-game">
                 <div class="header">
                     <h1>Connect 4</h1>
                     <div class="nav">
-                        <div id="buttonH" class="game">gamg</div>
-                        <div id="buttonH" class="game information">game information</div>
-                        <div id="buttonH" class="contact">contact</div>
+                        <ul>
+                            <li>
+                                <div id="buttonH" class="game"><a href="">game</a></div>
+                            </li>
+                            <li>
+                                <div id="buttonH" class="game information"><a href="">game information</a> </div>
+                            </li>
+                            <li>
+                                <div id="buttonH" class="contact"> <a href="contact.html">contact</a></div>
+                            </li>
+                        </ul>
                     </div>
                 </div>    
             </section>
             
-            <section>
+            <section id="main-game">
                 <div class="main">
                     <div class="games">
                         <div id="menu" class="menu">
                             <div class="Multiplayers" id="buttonV">
                                 <div id="sub-menu" class="sub-menu">
-                                    <div class="2 players" id="buttonV">2 players</div>
-                                    <div class="3 players" id="buttonV">3 players</div>
+                                    <div class="2 players" id="buttonV"><button>2 players</button></div>
+                                    <div class="3 players" id="buttonV"><button>3 players</button></div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <div class="players-tags">
+                        <input type="text" name="Name" value="name">
+                        <button type="button" name="More">+</button>
+                        <button type="button" name="Start">start</button>
+                    </div>
+
                     <div class="game">
-                        <div class="timeplayer" id="timer">00:00</div>
+                        
                         <div class="board"></div>
-                        <div class="player1" id="p1"></div>
-                        <div class="player2" id="p2"></div>
-                        <div class="player3" id="p3"></div>
+                        <div id="turn"1></div>
+                        <div id="oppenent">
+                            <div class="timeplayer" id="timer-game">
+                                <p id="timer">00:00</p>
+                            </div>
+                            <div class="player1" id="p1"></div>
+                        </div>
+                        <div id="turn2"></div>
+                        <div id="oppenent">
+                            <div class="timeplayer" id="timer-game">
+                                <p id="timer">00:00</p>
+                            </div>
+                            <div class="player2" id="p2"></div>
+                        </div>
+                        <div id="turn3"></div>
+                        <div id="oppenent">
+                            <div class="timeplayer" id="timer-game">
+                                <p id="timer">00:00</p>
+                            </div>
+                            <div class="player3" id="p3"></div>
+                        </div>
                     </div>
-                    <div class="contact">
-                        <form>
-                            <input type="text" name="Name" value="name">
-                            <input type="text" name="Email" value="email">
-                            <input type="text" name="Message" value="message">
-                        </form>
-                    </div>
+                   
                 </div>
             </section>
-            <section>
+
+            <section id="footer-game">
                 <div class="footer">
                     <div id="logo" class="logo"></div>
                     <div id="logo" class="logo1"></div>
