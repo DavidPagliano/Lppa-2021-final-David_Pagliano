@@ -5,9 +5,9 @@ function enviardatos(){
 }
 
 function validarNombre(){
-    var nombre = document.getElementById('Name');
-    var errorNombre = document.getElementById('errorName');
-    if(nombre.nodeValue.length > 3){
+    var nombre = document.getElementById('Name').focus();
+    var errorNombre = document.getElementById('errorName').focus();
+    if(nombre.nodeValue.length > 5){
         errorNombre.innerHTML = "Debe ingresar un nombre con más de 3 caracteres";
         return false;
     }
@@ -22,9 +22,27 @@ function validarNombre(){
 }
 console.log(validarNombre);
 
+function validarjugador(){
+    var nombrePlayer = document.getElementById('Name').focus();
+    var errorNombre = document.getElementById('errorName').focus();
+    if(nombrePlayer.nodeValue.length > 3){
+        errorNombre.innerHTML = "Debe ingresar un nombre de jugador";
+        return false;
+    }
+    else if(nombrePlayer === '' || nombrePlayer === null){
+        errorNombre.innerHTML = "Debe ingresar un nombre";
+        return false;
+    } else{
+        errorNombre.innerHTML ="";
+        return true;
+    }
+    
+}
+console.log(validarjugador);
+
 function validarEmail(){
-    var email = document.getElementById('Email');
-    var errorEmail = document.getElementById('errorEmail');
+    var email = document.getElementById('Email').focus();
+    var errorEmail = document.getElementById('errorEmail').focus();
     if(!(/\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)/.test(email))){
         errorEmail.innerHTML = 'Debe ingresar un email valido';
         return false;
@@ -33,8 +51,8 @@ function validarEmail(){
 console.log(validarEmail);
 
 function validarMensaje(){
-    var mensaje = document.getElementById('message');
-    var errorMensaje = document.getElementById('errorMessage');
+    var mensaje = document.getElementById('message').focus();
+    var errorMensaje = document.getElementById('errorMessage').focus();
     /* falta validar mensaje, averiguar como hacerlo */
 }
 
