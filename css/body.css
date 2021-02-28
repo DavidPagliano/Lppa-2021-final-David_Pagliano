@@ -7,10 +7,11 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     margin: auto;
     padding: 0;
-    height: 800px;
-    width: 1000px;
+    height: 100%;
+    width: 100%;
     background: transparent url("../images/Fondo\ 1.jpg") center no-repeat;}
 
 
