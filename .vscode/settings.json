@@ -1,0 +1,20 @@
+{
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "workbench.startupEditor": "newUntitledFile",
+    "window.zoomLevel": 0,
+    "editor.autoIndent": "none",
+    "editor.wordWrapColumn": 100,
+    "css.lint.compatibleVendorPrefixes": "warning",
+    "css.lint.duplicateProperties": "warning",
+    "css.lint.ieHack": "warning",
+    "css.lint.important": "warning",
+    "css.lint.universalSelector": "warning",
+    "css.lint.unknownVendorSpecificProperties": "warning",
+    "css.lint.zeroUnits": "warning",
+    "html.format.endWithNewline": true,
+    "html.format.extraLiners": "html",
+    "html.format.contentUnformatted": "",
+    "html.format.indentInnerHtml": true,
+    "html.format.maxPreserveNewLines": 1
+}

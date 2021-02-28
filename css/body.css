@@ -6,14 +6,11 @@ html{
 body{
     display: flex;
     flex-direction: column;
-    margin: 0;
-    padding: 0;
-    background: transparent url("../images/fondo.jpg") center repeat;}
-.container{
-    display: flex;
-    flex-direction: column;
     justify-content: center;
-    height: 500px;
-    width: 800px;
-}
+    margin: auto;
+    padding: 0;
+    height: 800px;
+    width: 1000px;
+    background: transparent url("../images/Fondo\ 1.jpg") center no-repeat;}
+
 

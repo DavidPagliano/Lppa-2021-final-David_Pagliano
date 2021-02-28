@@ -5,6 +5,15 @@ var columns = null;
 /**
  * Matriz para que jueguen dos jugadores
  */
+var board2 = [
+    [null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null],
+    [null, null, null, players, null, null, null],
+    [null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null],
+    [null, null, null, null, null, null, null]
+]
+
 var board3 = [
     [null, null, null, null, null, null, null, null, null],
     [null, null, null, null, null, null, null, null, null],
@@ -17,12 +26,9 @@ var board3 = [
     [null, null, null, null, null, null, null, null, null]
 ]
 
-
 //turno de los jugadores
 var turns = function () {
     turn = (turn === 'p1') ? 'p2' : 'p1';
-    turn = (turn === 'p2') ? 'p1' : 'p2';
-    turn = (turn === 'p3') ? 'p2' : 'p3';
 }
 
 var render = function () {
@@ -57,5 +63,4 @@ var columnEventHandler = function (evt) {
 var init = function () {
     boardHTML = document.getElementById('board');
     turn = Math.random() > 0.5 ? 'p1' : 'p2';
-    turn = Math.random() > 0.5 ? 'p2' : 'p3';
 }
