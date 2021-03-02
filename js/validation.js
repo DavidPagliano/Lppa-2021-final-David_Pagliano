@@ -1,72 +1,79 @@
-window.onload = enviardatos;
 
-function enviardatos(){
+
+
+
+
+
+function validarNombre() {
+    var nombre = null;
+    nombre = document.getElementById('textName');
+    var errorNombre = null;
+    errorNombre = document.getElementById('errorName');
+    if (nombre.value > 3) {
+        errorNombre.innerHTML = 'Debe ingresar un nombre con más de 3 caracteres';
+        console.log(errorNombre);
+        return false;
+    } else if (nombre == '' || nombre == null) {
+        errorNombre.innerHTML = 'Debe ingresar un nombre';
+        return false;
+    } else {
+        //errorNombre.innerHTML = '';
+        console.log(nombre);
+        return true;
+    }
+}
+
+
+function validarEmail() {
+    var email = null;
+    email = document.getElementById('Email');
+    var errorEmail = null;
+    errorEmail = document.getElementById('errorEmail');
+    if (!(/\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)/.test(email))) {
+        errorEmail.innerHTML = 'Debe ingresar un email valido';
+        //errorEmail.placeholder = 'Debe ingresar un email valido';
+        console.log(errorEmail);
+        return false;
+    }
+}
+
+function validarMensaje() {
+    var mensaje = null;
+    mensaje = document.getElementById('textMassage');
+    var errorMensaje = null;
+    errorMensaje = document.getElementById('errorMessage');
+    if (mensaje.value.length > 3) {
+        errorMensaje.innerHTML = "Debe ingresar un nombre con más de 3 caracteres";
+        return false;
+    } else if (mensaje == '' || mensaje == null) {
+        errorMensaje.innerHTML = 'Debe ingresar un mensaje';
+        //errorMensaje.placeholder = 'Debe ingresar un mensaje valido';
+        return false;
+    } else {
+        // errorMensaje.innerHTML = '';
+        return true;
+    }
+}
+
+function validar() {
+    var ConsolaNombre = document.querySelector('#textName').nodeValue;
+    var ConsolaEmail = document.querySelector('#textEmail').nodeValue;
+    var ConsolaMensaje = document.querySelector('#textMessage').nodeValue;
+
+    if (validarNombre() && validarEmail() && validarMensaje() && confirm("Pulsa aceptar si deseas enviar el formulario")) {
+        console.log('Nombre', ConsolaNombre);
+        console.log('Email', ConsolaEmail);
+        console.log('Mensaje', ConsolaMensaje);
+        return false;
+    } else {
+
+        return true;
+    }
+}
+
+
+function enviarDatos() {
     document.getElementById('Enviar').addEventListener('click', validar, false);
 }
 
-function validarNombre(){
-    var nombre = document.getElementById('Name').focus();
-    var errorNombre = document.getElementById('errorName').focus();
-    if(nombre.nodeValue.length > 5){
-        errorNombre.innerHTML = "Debe ingresar un nombre con más de 3 caracteres";
-        return false;
-    }
-    else if(nombre === '' || nombre === null){
-        errorNombre.innerHTML = "Debe ingresar un nombre";
-        return false;
-    } else{
-        errorNombre.innerHTML ="";
-        return true;
-    }
-    
-}
-console.log(validarNombre);
-
-function validarjugador(){
-    var nombrePlayer = document.getElementById('Name').focus();
-    var errorNombre = document.getElementById('errorName').focus();
-    if(nombrePlayer.nodeValue.length > 3){
-        errorNombre.innerHTML = "Debe ingresar un nombre de jugador";
-        return false;
-    }
-    else if(nombrePlayer === '' || nombrePlayer === null){
-        errorNombre.innerHTML = "Debe ingresar un nombre";
-        return false;
-    } else{
-        errorNombre.innerHTML ="";
-        return true;
-    }
-    
-}
-console.log(validarjugador);
-
-function validarEmail(){
-    var email = document.getElementById('Email').focus();
-    var errorEmail = document.getElementById('errorEmail').focus();
-    if(!(/\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)/.test(email))){
-        errorEmail.innerHTML = 'Debe ingresar un email valido';
-        return false;
-    }
-}
-console.log(validarEmail);
-
-function validarMensaje(){
-    var mensaje = document.getElementById('message').focus();
-    var errorMensaje = document.getElementById('errorMessage').focus();
-    /* falta validar mensaje, averiguar como hacerlo */
-}
-
-
-function validar(){
- var nameConsole = document.querySelector('#textName');
- var emailConsole = document.querySelector('#textEmail');
- var messageConsole = document.querySelector('#textMessage');
-
- if(validarNombre && validarEmail && validarMensaje && confirm('Desea enviar el mensaje')){
-    console.log('Nombre', nameConsole), console.log('Email', emailConsole), console.log('Mensaje', messageConsole);
-    return false;
- } else {
-     return true;
- }
- 
-}
+window.onload = enviarDatos;

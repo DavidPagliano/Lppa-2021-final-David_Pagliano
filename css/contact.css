@@ -4,10 +4,29 @@ body{
 }
 
 
+#container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 100vh;
+    height: 100%;
+    margin: 10px;
+    padding: 0;
+}
+
+
 form{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width: 50%;
+    height: 75%;
+    margin: 200px;
+    padding: 10px;
+    background:  #163999;
+    opacity: 80%;
+    color: #fff; 
+    border-radius: 35px 35px 35px 35px;
 }
 
 form >.text{
@@ -17,7 +36,7 @@ form >.text{
     align-items: center;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
-    border-radius: 15px 1px 15px 1px;
+    border-radius: 15px 15px 15px 15px;
 }
 #textName {
     display: flex;
@@ -47,7 +66,7 @@ form >.text{
     margin: 1px 15px 20px 15px;
     padding: 5px;
     height: 100px;
-    width: 50%;
+    width: 80%;
     resize: none;
     background-position: bottom right;
 	background-repeat: no-repeat;
@@ -64,4 +83,37 @@ button{
     width: 100px;
     margin: 1px 15px 20px 15px;
     border-radius: 15px 15px 15px 15px;
+}
+
+
+/* Validaciones */
+
+#errorName {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    color: #f80404;
+}
+
+#errorEmail {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    color: #f80404;
+}
+
+#errorMessage {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    color: #f80404;
 }

@@ -1,48 +1,30 @@
 <!DOCTYPE html>
+
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact of connect4</title>
-    <!-- Style -->
-    <link rel="stylesheet" href="css/resets/reset.css">
-    <link rel="shortcut icon" type="image/x-icon" href="/images/iconopage.ico">
-    <link rel="stylesheet" href="css/body.css">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/contact.css">
-    <!--Scritp-->
-    <script src="js/validation.js"></script>
-</head>
-<body>
-   <div id="container">
-    <section id="header-game">
-        <div class="header">
-            <h1>Connect 4</h1>
-            <div class="nav">
-                <ul>
-                    <li>
-                        <div id="buttonH" class="game"><a href="">game</a></div>
-                    </li>
-                    <li>
-                        <div id="buttonH" class="game information"><a href="">game information</a> </div>
-                    </li>
-                    <li>
-                        <div id="buttonH" class="contact"> <a href="contact.html">contact</a></div>
-                    </li>
-                </ul>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Contact of connect4</title>
+        <!-- Style -->
+        <link rel="stylesheet" href="css/resets/reset.css">
+        <link rel="stylesheet" href="css/body.css">
+        <link rel="stylesheet" href="css/contact.css">
+        <!--Scritp-->
+        <script src="js/validation.js"></script>
+    </head>
+    <body>
+        <div id="container">
+            <div class="contact">
+                <form>
+                    <input id="textName" class="text" type="text" name="Name" placeholder="Name...">
+                    <div id="errorName"></div>
+                    <input id="textEmail" class="text" type="text" name="Email" placeholder="Email...">
+                    <div id="errorEmail"></div>
+                    <textarea id="textMessage" class="text" name="Message" placeholder="Message...."></textarea>
+                    <div id="errorMessage"></div>
+                    <button id="Enviar" type="submit" name="Enviar">Send message</button>
+                </form>
             </div>
-        </div>    
-    </section>
-    <section id="contact-game">
-        <div class="contact">
-            <form>
-                <input id="textName" class="text" type="text" name="Name" placeholder="Name...">
-                <input id="textEmail" class="text" type="text" name="Email" placeholder="Email...">
-                <textarea id="textMessage" class="text" name="Message" placeholder="Message...."></textarea>
-                <button id="input" type="button" name="Enviar">Send message</button>
-            </form>
         </div>
-    </section>
-   </div>
-</body>
+    </body>
 </html>
