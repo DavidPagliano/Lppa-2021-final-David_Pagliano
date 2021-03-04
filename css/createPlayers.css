@@ -1,0 +1,24 @@
+#board-players{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 50%;
+    height: 75%;
+    margin: 200px;
+    padding: 10px;
+    background:  #163999;
+    opacity: 80%;
+    color: #fff; 
+    border-radius: 35px 35px 35px 35px;
+}
+
+.button{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 50px;
+    width: 100px;
+    margin: 1px 15px 20px 15px;
+    border-radius: 15px 15px 15px 15px;
+    background:  #3062eb;
+}
