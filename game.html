@@ -7,25 +7,31 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./css/resets/reset.css">
         <link rel="stylesheet" href="./css/body.css">
-        <link rel="stylesheet" href="./css/game.css">
+        <link rel="stylesheet" href="./css/gameTest.css">
         <script src="./js/timer.js"></script>
-        <script src="./js/game.js"></script>
+        <script type="text/javascript" src="./js/game.js"></script>
         <title>Document</title>
     </head>
     <body>
         <div id="container-players">
-            <div id="container-game">
-                <div id="timer-game">00:00</div>
-                <div id="board-game"></div>
-                <div id="tags-players">
-                    <div id="p1"></div>
-                    <div id="p2"></div>
-                    <div id="p3"></div>
+            <div class="wrapper">
+                <div class="header"></div>
+                <div class="game">
+                    <div class="board"></div>
+                    <div class="ribbon"></div>
+                    <div class="players">
+                        <div class="spot yellow"></div>
+                        <div class="player p1"></div>
+                        <div class="direction left"></div>
+                        <div class="direction text">GO!</div>
+                        <div class="direction right"></div>
+                        <div class="player p2"></div>
+                        <div class="spot red"></div>
+                    </div>
                 </div>
-                <div id="timer-players">
-                    <div id="timer-p1">00:00</div>
-                    <div id="timer-p2">00:00</div>
-                    <div id="timer-p3">00:00</div>
+                <div class="footer">
+                    <button class="fb">&#x1f44d; Like</button>
+                    <button class="embed">Embed</button>
                 </div>
             </div>
         </div>

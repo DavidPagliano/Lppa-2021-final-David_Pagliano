@@ -6,10 +6,10 @@
 
 function validarNombre() {
     var nombre = null;
-    nombre = document.getElementById('textName');
+    nombre = document.getElementsByName('Name');
     var errorNombre = null;
     errorNombre = document.getElementById('errorName');
-    if (nombre.value > 3) {
+    if (nombre.values.length > 3) {
         errorNombre.innerHTML = 'Debe ingresar un nombre con más de 3 caracteres';
         console.log(errorNombre);
         return false;
@@ -17,7 +17,7 @@ function validarNombre() {
         errorNombre.innerHTML = 'Debe ingresar un nombre';
         return false;
     } else {
-        //errorNombre.innerHTML = '';
+        // errorNombre.innerHTML = '';
         console.log(nombre);
         return true;
     }
@@ -26,7 +26,7 @@ function validarNombre() {
 
 function validarEmail() {
     var email = null;
-    email = document.getElementById('Email');
+    email = document.getElementsByName('Email');
     var errorEmail = null;
     errorEmail = document.getElementById('errorEmail');
     if (!(/\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)/.test(email))) {
@@ -39,10 +39,10 @@ function validarEmail() {
 
 function validarMensaje() {
     var mensaje = null;
-    mensaje = document.getElementById('textMassage');
+    mensaje = document.getElementsByName('Massage');
     var errorMensaje = null;
     errorMensaje = document.getElementById('errorMessage');
-    if (mensaje.value.length > 3) {
+    if (mensaje.length > 3) {
         errorMensaje.innerHTML = "Debe ingresar un nombre con más de 3 caracteres";
         return false;
     } else if (mensaje == '' || mensaje == null) {
