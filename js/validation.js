@@ -42,7 +42,7 @@ function validarMensaje() {
     mensaje = document.getElementsByName('Massage');
     var errorMensaje = null;
     errorMensaje = document.getElementById('errorMessage');
-    if (mensaje.length > 3) {
+    if (mensaje.values.length > 5) {
         errorMensaje.innerHTML = "Debe ingresar un nombre con más de 3 caracteres";
         return false;
     } else if (mensaje == '' || mensaje == null) {
@@ -56,9 +56,9 @@ function validarMensaje() {
 }
 
 function validar() {
-    var ConsolaNombre = document.querySelector('#textName').nodeValue;
-    var ConsolaEmail = document.querySelector('#textEmail').nodeValue;
-    var ConsolaMensaje = document.querySelector('#textMessage').nodeValue;
+    var ConsolaNombre = document.querySelector('#textName').values;
+    var ConsolaEmail = document.querySelector('#textEmail').values;
+    var ConsolaMensaje = document.querySelector('#textMessage').values;
 
     if (validarNombre() && validarEmail() && validarMensaje() && confirm("Pulsa aceptar si deseas enviar el formulario")) {
         console.log('Nombre', ConsolaNombre);
