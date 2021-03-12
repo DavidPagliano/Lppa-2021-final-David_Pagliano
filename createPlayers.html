@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="./css/resets/reset.css">
         <link rel="stylesheet" href="./css/body.css">
         <link rel="stylesheet" href="./css/createPlayers.css">
-        <script src="./js/players.js"></script>
+        <script type="text/javascript" src="js/players.js"></script>
         <title>Document</title>
     </head>
     <body>
@@ -22,17 +22,18 @@
                 <input id="p2" type="text" placeholder="Name: ">
             </div>
 
-            <div id="board-p3" class="container-boardp3">
-                <div id="container-add" class="add">
-                    <input type="button" class="Add" name="btnAdd" value="+">
-                    <div><input type="text" class="playername"></div>
-                </div>
+            <div id="board-p3">
+                <label>Player 3: </label>
+                <input id="p3" type="text" placeholder="Name: ">
             </div>
+            <input type="button" class="Add" name="btnAdd" onclick="addPlayer()" value="+">
             <div id="buttons">
-                <div id="button-start" class="button"><a href="game.html"><span>Start</span></a></div>
+                <div id="button-start" class="button"><a onclick="createNewGame()"><span>Start</span></a></div>
                 <div id="errorPlayer"></div>
                 <div id="button-cancel" class="button"><a href="index.html"><span>Cancel</span></a></div>
             </div>
+        </div>
+
         </div>
     </body>
 </html>

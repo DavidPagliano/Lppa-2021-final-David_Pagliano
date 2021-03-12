@@ -1,3 +1,4 @@
+'use strict';
 // var player1 = { name: 'You', color: 'yellow' };
 // var player2 = { name: 'AI (Easy)', color: 'red' };
 // var status = 'ready'; // 'ready', 'p1Turn', 'p2Turn', 'p1Win', 'p2Win'
@@ -6,15 +7,8 @@ var columnsHTML = null;
 var red = null;
 boardHTML = document.getElementsByClassName('board');
 var turn = 'yellow';
-var board = [
-    [null, null, null, null, null, null],
-    [null, null, null, null, null, null],
-    [null, null, null, null, null, null],
-    [null, null, null, red, null, null],
-    [null, null, null, null, null, null],
-    [null, null, null, null, null, null],
-    [null, null, null, null, null, null]
-];
+
+
 
 var toggleTurn = function () {
     turn = (turn === 'yellow') ? 'red' : 'yellow';
