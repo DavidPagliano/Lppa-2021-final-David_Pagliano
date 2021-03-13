@@ -18,13 +18,23 @@ var createNewPlayers = function (name, color) {
 function addPlayer() {
     var p3 = document.getElementById('board-p3');
     p3.style.display = 'flex';
+    document.getElementById('less').style.display = 'flex';
+    document.getElementById('less').style.visibility = 'visible';
+    document.getElementById('add').style.visibility = 'hidden';
+}
+
+function lessPlayer() {
+    var p3 = document.getElementById('board-p3');
+    p3.style.display = 'none';
+    document.getElementById('add').style.display = 'flex';
+    document.getElementById('less').style.visibility = 'hidden';
+    document.getElementById('add').style.visibility = 'visible';
 }
 
 function playercount() {
     for (var i = null; i < players; i++) {
         playername + i;
     }
-
 }
 
 

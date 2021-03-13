@@ -25,15 +25,15 @@
             <div id="board-p3">
                 <label>Player 3: </label>
                 <input id="p3" type="text" placeholder="Name: ">
+                <input type="button" id="less" class="Less" name="btnAdd" onclick="lessPlayer()" value="-">
             </div>
-            <input type="button" class="Add" name="btnAdd" onclick="addPlayer()" value="+">
+            <input type="button" id="add" class="Add" name="btnAdd" onclick="addPlayer()" value="+">
+
             <div id="buttons">
                 <div id="button-start" class="button"><a onclick="createNewGame()"><span>Start</span></a></div>
                 <div id="errorPlayer"></div>
                 <div id="button-cancel" class="button"><a href="index.html"><span>Cancel</span></a></div>
             </div>
-        </div>
-
         </div>
     </body>
 </html>

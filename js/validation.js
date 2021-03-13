@@ -1,9 +1,3 @@
-
-
-
-
-
-
 function validarNombre() {
     var nombre = null;
     nombre = document.getElementsByName('Name');
