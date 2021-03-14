@@ -35,8 +35,15 @@ a:visited {
 .game {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    background-color: #FFF;
+    justify-content: space-evenly;
+    width: 50%;
+    height: 75%;
+    margin: 200px;
+    padding: 10px;
+    background:  #163999;
+    opacity: 80%;
+    color: #fff; 
+    border-radius: 35px 35px 35px 35px;
 }
 
 .game .board {
