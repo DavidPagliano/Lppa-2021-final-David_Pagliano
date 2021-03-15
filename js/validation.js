@@ -37,7 +37,7 @@ function validarMensaje() {
     var errorMensaje = null;
     errorMensaje = document.getElementById('errorMessage');
     if (mensaje.values.length > 5) {
-        errorMensaje.innerHTML = "Debe ingresar un nombre con más de 3 caracteres";
+        errorMensaje.innerHTML = "Debe ingresar un nombre con más de 5 caracteres";
         return false;
     } else if (mensaje == '' || mensaje == null) {
         errorMensaje.innerHTML = 'Debe ingresar un mensaje';

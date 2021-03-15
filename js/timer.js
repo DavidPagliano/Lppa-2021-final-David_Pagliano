@@ -1,5 +1,4 @@
-//timer y turn
-
+//timer
 class Timers {
     constructor(timer, updateTimer, currentTimer, count) {
         this.count = count,

@@ -98,7 +98,8 @@ function renderGame() {
 
 function winner() {
     var saved = false;
-    var winner = function (playersNames) {
+    var w = null;
+    w = function (players) {
         status.className = ' ';
         boardHTML.className += 'disabled';
         if (saved) {
@@ -129,7 +130,7 @@ function check() {
             if (board[i][j]) {
                 if (board[i][j] === (board[i][j + 1]) && board[i][j] === board[i][j + 2] &&
                     board[i][j] === (board[i][j + 3])) {
-                    winner(board[i][j]);
+                    w(board[i][j]);
                 }
             }
         }
