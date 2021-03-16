@@ -30,9 +30,9 @@ function createNewGame() {
     storage.clear();
 
     //PLAYER DATA INITIALIZE
-    createPlayer(getIDValue("p1"), 0xff0000ff);
-    createPlayer(getIDValue("p2"), 0xff0000ff);
-    if (isVisible("board-p3")) createPlayer(getIDValue("p3"), 0xff0000ff);
+    createPlayer(getIDValue("p1"), "#ff0000");
+    createPlayer(getIDValue("p2"), "#00ff00");
+    if (isVisible("board-p3")) createPlayer(getIDValue("p3"), "#0000ff");
 
     if (hasErrors()) {
         clearErrors();
@@ -65,19 +65,26 @@ function createPlayer(name, color) {
     var currentPlayerNumber = playerCount;
     var storage = window.localStorage;
 
-    if (name === "" || name === null || name.lenght > 3) {
+    if (name === "" || name === null || name.length < 3) {
         alert("The player " + currentPlayerNumber + "'s name is invalid.");
         setErrors();
+        playerCount--;
         return;
     }
 
+    if (color === "" || color === null || color.length != 7) {
+        alert("The player " + currentPlayerNumber + "'s color is invalid.");
+        setErrors();
+        playerCount--;
+        return;
+    }
     storage.setItem("playerName" + currentPlayerNumber, name);
     storage.setItem("playerColor" + currentPlayerNumber, color);
 }
 
 function setBoardConfig() {
-    var maxColumns = baseMaxColumns + (playerCount - 1) * 3;
-    var maxRows = baseMaxRows + (playerCount - 1) * 3;
+    var maxColumns = baseMaxColumns + (playerCount - 2) * 3;
+    var maxRows = baseMaxRows + (playerCount - 2) * 3;
     var boardString = "";
     var storage = window.localStorage;
 

@@ -1,4 +1,7 @@
 var Game = new Object();
+
+var coinRadius = 25;
+
 window.onload = function () {
     loadGame();
 }
@@ -6,7 +9,7 @@ window.onload = function () {
 function loadGame() {
     var storage = window.localStorage;
     loadGameData(storage);
-    renderGame();
+    startRendering();
     startGame();
 }
 
@@ -18,12 +21,12 @@ function loadGameData(storage) {
 
 
 function loadGameConfig(storage) {
-    Game.playerCount = storage.getItem("playerCount");
-    Game.time = storage.getItem("time");
-    Game.turn = storage.getItem("turn");
-    Game.playerCount = storage.getItem("playerCount");
-    Game.maxColumns = storage.getItem("maxColumns");
-    Game.maxRows = storage.getItem("maxRows");
+    Game.playerCount = parseInt(storage.getItem("playerCount"));
+    Game.time = parseInt(storage.getItem("time"));
+    Game.turn = parseInt(storage.getItem("turn"));
+    Game.playerCount = parseInt(storage.getItem("playerCount"));
+    Game.maxColumns = parseInt(storage.getItem("maxColumns"));
+    Game.maxRows = parseInt(storage.getItem("maxRows"));
 }
 
 function loadPlayerConfig(storage) {
@@ -58,48 +61,64 @@ function loadBoardConfig(storage) {
     Game.board = board;
 }
 
+function startRendering() {
+    initializeCanvas();
+    renderGame();
+}
+
+function initializeCanvas() {
+    document.getElementById('board').addEventListener('click', function (event) {
+        var elem = document.getElementById('board');
+        var elemLeft = elem.offsetLeft + elem.clientLeft,
+            elemTop = elem.offsetTop + elem.clientTop;
+        var x = event.pageX - elemLeft,
+            y = event.pageY - elemTop;
+
+        console.log("click: x:" + x + " y:" + y);
+        console.log("column: " + collisionDetect(x, y));
+    }, false);
+}
 
 function renderGame() {
-    var html = '';
-    board = document.getElementsByClassName('board');
-    boardHTML = document.getElementsByClassName('game');
-    for (var i = 0; i < board.length; i++) {
-        this.board.length === 10 ? html += '<div id="column' + i + '" class="column3">'
-            : html += '<div id="column' + i + '"class="column">';
-        for (var j = this.board[i] - 1; j >= 0; j--) {
-            html += '<div id="slot' + i + j + '" class="slot';
-            if (this.board[i][j]) { html += ' ' + this.board[i][j]; }
-            html += '"></div>';
-        }
-        html += '></div>';
-    }
-    this.boardHTML.innerHTML = html;
-    this.bindColumnHandlers();
+    var boardElement = document.getElementById('board');
+    boardElement.width = (Game.maxColumns + 1) * 75;
+    boardElement.height = (Game.maxRows + 1) * 75;
 
-
-    /*var table = document.createElement("table");
-
+    var canvasContext = boardElement.getContext("2d");
     for (let i = 0; i < Game.board.length; i++) {
-        var column = document.createElement("tr");
-
         for (let j = 0; j < Game.board[i].length; j++) {
-            var row = document.createElement("td");
-            var circle = document.createElement("div");
-            circle.classList.add("spot");
-            circle.style.backgroundColor = Game.board[i].row[j].Owner.Color;
-            row.append(circle);
-            column.append(row);
-        }
-        table.append(column);
-    }
+            var row = Game.board[i][j];
+            var color = (row.Owner == undefined) ? "#ffffff" : row.Owner.Color;
+            canvasContext.beginPath();
+            canvasContext.arc((i + 1) * 75, (j + 1) * 75, coinRadius, 0, 2 * Math.PI);
+            canvasContext.stroke();
+            canvasContext.fillStyle = color;
+            canvasContext.fill();
 
-    boardElement.append(table);*/
+            console.log("i:" + i + " j:" + j);
+        }
+    }
+}
+
+function collisionDetect(x, y) {
+    for (let i = 0; i < Game.board.length; i++) {
+        var currentColumn = (i + 1) * 75;
+        if (x < currentColumn + coinRadius && x > currentColumn - coinRadius) {
+            return i;
+        }
+    }
+    return null;
+}
+
+function distanceToPoint(x1, y1, x2, y2, range) {
+    var a = x1 - x2;
+    var b = y1 - y2;
+    return (Math.sqrt(a * a + b * b) <= range) ? true : false;
 }
 
 function winner() {
     var saved = false;
-    var w = null;
-    w = function (players) {
+    var winner = function (playersNames) {
         status.className = ' ';
         boardHTML.className += 'disabled';
         if (saved) {
@@ -130,7 +149,7 @@ function check() {
             if (board[i][j]) {
                 if (board[i][j] === (board[i][j + 1]) && board[i][j] === board[i][j + 2] &&
                     board[i][j] === (board[i][j + 3])) {
-                    w(board[i][j]);
+                    winner(board[i][j]);
                 }
             }
         }
