@@ -2,6 +2,8 @@ var Game = new Object();
 
 var coinRadius = 25;
 
+var timerInterval;
+
 window.onload = function () {
     loadGame();
 }
@@ -21,8 +23,8 @@ function loadGameData(storage) {
 
 
 function loadGameConfig(storage) {
-    Game.playerCount = parseInt(storage.getItem("playerCount"));
-    Game.time = parseInt(storage.getItem("time"));
+    Game.playerCount = (storage.getItem("playerCount"));
+    Game.time = (storage.getItem("time"));
     Game.turn = parseInt(storage.getItem("turn"));
     Game.playerCount = parseInt(storage.getItem("playerCount"));
     Game.maxColumns = parseInt(storage.getItem("maxColumns"));
@@ -44,10 +46,10 @@ function loadPlayerConfig(storage) {
 function loadBoardConfig(storage) {
     var board = new Array();
     var boardString = storage.getItem("board");
-    var columnsString = boardString.split('|');
+    var columnsString = boardString.split("|");
 
     for (let i = 0; i < columnsString.length; i++) {
-        var rowsString = columnsString[i].split('-');
+        var rowsString = columnsString[i].split("-");
         var column = new Array();
         for (let j = 0; j < rowsString.length; j++) {
             var row = new Object();
@@ -63,24 +65,27 @@ function loadBoardConfig(storage) {
 
 function startRendering() {
     initializeCanvas();
+    initializeTurn();
     renderGame();
 }
 
 function initializeCanvas() {
-    document.getElementById('board').addEventListener('click', function (event) {
-        var elem = document.getElementById('board');
+    document.getElementById("board").addEventListener("click", function (event) {
+        var elem = document.getElementById("board");
         var elemLeft = elem.offsetLeft + elem.clientLeft,
             elemTop = elem.offsetTop + elem.clientTop;
         var x = event.pageX - elemLeft,
             y = event.pageY - elemTop;
-
+        var column = collisionDetect(x, y);
         console.log("click: x:" + x + " y:" + y);
-        console.log("column: " + collisionDetect(x, y));
+        console.log("column: " + column);
+
+        putCoin(column);
     }, false);
 }
 
 function renderGame() {
-    var boardElement = document.getElementById('board');
+    var boardElement = document.getElementById("board");
     boardElement.width = (Game.maxColumns + 1) * 75;
     boardElement.height = (Game.maxRows + 1) * 75;
 
@@ -95,7 +100,7 @@ function renderGame() {
             canvasContext.fillStyle = color;
             canvasContext.fill();
 
-            console.log("i:" + i + " j:" + j);
+            //console.log("i:" + i + " j:" + j);
         }
     }
 }
@@ -103,40 +108,143 @@ function renderGame() {
 function collisionDetect(x, y) {
     for (let i = 0; i < Game.board.length; i++) {
         var currentColumn = (i + 1) * 75;
-        if (x < currentColumn + coinRadius && x > currentColumn - coinRadius) {
+        if (x < currentColumn + coinRadius && x > currentColumn - coinRadius) { //x dentro de la columna
             return i;
         }
     }
     return null;
 }
 
-function distanceToPoint(x1, y1, x2, y2, range) {
-    var a = x1 - x2;
-    var b = y1 - y2;
-    return (Math.sqrt(a * a + b * b) <= range) ? true : false;
+function initializeTurn() {
+    var player = Game.players.find(x => x.ID == Game.turn);
+    var renderElement = document.getElementById("currentturn");
+    renderElement.innerText = "Turno: " + player.Name;
+}
+
+function resumeGame() {
+    timerInterval = setInterval(timerImplementation, 1000);
+}
+
+function timerImplementation() {
+
+    var tiempo = new Date(60);
+    Game.time = tiempo;
+    //Decremento 500 milisegundos
+    var s = tiempo.getSeconds() - 1;
+    tiempo.setSeconds(s);
+
+    //Muestro la nueva fecha
+    var texto = rellenaCeros(Game.time.getMinutes()) + ":" + rellenaCeros(Game.time.getSeconds());
+    var spanTiempo = document.getElementById("tiempo");
+    spanTiempo.innerHTML = texto;
+    startGame();
+    //Compruebo el valor para cambiar el color del texto
+    if (Game.time.getSeconds() < 10) {
+        spanTiempo.style.color = "red";
+
+    }
+    else if (Game.time.getSeconds() < 30) {
+        spanTiempo.style.color = "orange";
+    }
+    else {
+        spanTiempo.style.color = "#0F0";
+    }
+
+    //Compruebo si llega a 0 para finalizar el juego o continuar
+    if (Game.time.getSeconds() <= 0) {
+        var mensaje = "¡Lo siento! Se ha terminado el tiempo.";
+        finalizar(mensaje);
+    }
+    else {
+        //Hago un loop para que se ejecute cada 1s
+        stop = setTimeout(timerImplementation, 1);
+    }
+}
+
+function rellenaCeros(numero) {
+
+    if (numero < 4) {
+        return "0" + numero;
+    }
+    else {
+        return numero;
+    }
+
+}
+
+
+function putCoin(column) {
+    var hit;
+    var fail = false;
+    for (let i = 0; i < Game.maxRows; i++) {
+        var owner = Game.board[column][i].Owner;
+        if (owner !== undefined) {
+            if (i == 0) {
+                fail = true;
+                break;
+            }
+            hit = i;
+            break;
+        }
+        else if (i === Game.maxRows - 1) {
+            hit = i + 1;
+        }
+    }
+    if (!fail) {
+        var player = Game.players.find(x => x.ID == Game.turn);
+        Game.board[column][hit - 1].Owner = player;
+        renderGame();
+        changeTurn();
+    }
+}
+
+function changeTurn() {
+    var fail = true;
+    var player;
+    var length = Game.players.length + 1;
+    for (let i = Game.turn + 1; i <= length; i++) {
+        player = Game.players.find(x => x.ID === i);
+        if (player !== undefined) {
+            Game.turn = player.ID;
+            fail = false;
+            break;
+        }
+    }
+    if (fail == true) {
+        for (let i = 1; i <= length; i++) {
+            player = Game.players.find(x => x.ID === i);
+            if (player !== undefined) {
+                Game.turn = player.ID;
+                fail = false;
+                break;
+            }
+        }
+    }
+    var renderElement = document.getElementById("currentturn");
+    renderElement.innerText = "Turno: " + player.Name;
 }
 
 function winner() {
     var saved = false;
     var winner = function (playersNames) {
-        status.className = ' ';
-        boardHTML.className += 'disabled';
+        status.className = " ";
+        boardHTML.className += "disabled";
         if (saved) {
-            winnerPoster.innerHTML = '';
-            messagePoster.innerHTML = '¡Saved the game!';
-            resetButton.innerHTML = 'Accept';
+            winnerPoster.innerHTML = "";
+            messagePoster.innerHTML = "¡Saved the game!";
+            resetButton.innerHTML = "Accept";
         } else {
             var gameOver = null;
             gameOver = true;
             if (playerNames) {
-                playerNames = (playerNames == 'p1') ? player.p1 : player.p2;
+                playerNames = (playerNames == "p1") ? player.p1 : player.p2;
                 winnerPoster.innerHTML = playerNames;
-                messagePoster.innerHTML = 'The winner is ' + players + '!!!!';
+                messagePoster.innerHTML = "The winner is " + players + "!!!!";
             } else {
-                winnerPoster.innerHTML = 'No player has won!';
-                messagePoster.innerHTML = 'It\'s a TIE!';
+                winnerPoster.innerHTML = "No player has won!";
+                messagePoster.innerHTML = "It\"s a TIE!";
             }
-            resetButton.innerHTML = '¡Play again!';
+            resetButton.innerHTML = "¡Play again!";
         }
     }
 }

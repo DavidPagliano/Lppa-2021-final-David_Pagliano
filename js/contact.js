@@ -4,11 +4,11 @@ function validarNombre() {
     var errorNombre = null;
     errorNombre = document.getElementById('errorName');
     if (nombre.values.length > 3) {
-        errorNombre.innerHTML = 'Debe ingresar un nombre con más de 3 caracteres';
+        errorNombre.innerHTML = "Debe ingresar un nombre con más de 3 caracteres";
         console.log(errorNombre);
         return false;
-    } else if (nombre == '' || nombre == null) {
-        errorNombre.innerHTML = 'Debe ingresar un nombre';
+    } else if (nombre == "" || nombre == null) {
+        errorNombre.innerHTML = "Debe ingresar un nombre";
         return false;
     } else {
         // errorNombre.innerHTML = '';
@@ -24,7 +24,7 @@ function validarEmail() {
     var errorEmail = null;
     errorEmail = document.getElementById('errorEmail');
     if (!(/\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)/.test(email))) {
-        errorEmail.innerHTML = 'Debe ingresar un email valido';
+        errorEmail.innerHTML = "Debe ingresar un email valido";
         //errorEmail.placeholder = 'Debe ingresar un email valido';
         console.log(errorEmail);
         return false;

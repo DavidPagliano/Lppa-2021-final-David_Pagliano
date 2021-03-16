@@ -9,7 +9,7 @@ class Timers {
 }
 
 
-//Funcion para empezar el turno o juego
+//Funcion que permite conseguir el tiempo del juego y poder pasar dicho valor al timer
 function Star() {
     var begin = this;
     if ((!this.count)) {
