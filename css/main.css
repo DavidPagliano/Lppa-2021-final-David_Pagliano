@@ -2,7 +2,6 @@ body{
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    box-sizing: border-box;
 }
 
 #container-menu{
@@ -13,21 +12,20 @@ body{
     height: 100%;
     margin: 10px;
     padding: 0;
-    
 }
 
 #game-menu{
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
     width: 50%;
     height: 75%;
-    margin: 200px;
-    padding: 10px;
+    margin: 250px 250px 250px 720px;
+    padding: 0 0 20px;
     background:  #163999;
     opacity: 80%;
     color: #fff; 
-    border-radius: 35px 35px 35px 35px;
+    border-radius: 5px 5px 5px 5px;
 }
 
 #game-menu h1{
@@ -38,13 +36,22 @@ body{
     padding: 0 0 20px;
     font-size: 22px;
 }
+
 #game-menu a {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     text-align: center;
-    margin: 10px;
-    text-decoration: none;
+    margin: 25px 25px 25px 135px;
+    padding: 10px;
+    height: 50px;
+    width: 200px;
     font-size: 18px;
     line-height: 20px;
-    color: #a9a9a9;
+    border-radius: 7px 7px 7px 7px;
+    text-decoration: none;
+    color: #dbd7d7;
+    background:  #4583d4dc;
 }
+
+

@@ -21,12 +21,12 @@ form{
     justify-content: center;
     width: 50%;
     height: 75%;
-    margin: 200px;
+    margin: 250px 250px 250px 250px;
     padding: 10px;
     background:  #163999;
     opacity: 80%;
     color: #fff; 
-    border-radius: 35px 35px 35px 35px;
+    border-radius: 5px 5px 5px 5px;
 }
 
 form >.text{
@@ -36,13 +36,13 @@ form >.text{
     align-items: center;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
-    border-radius: 15px 15px 15px 15px;
+    border-radius: 5px 5px 5px 5px;
 }
 #textName {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 1px 15px 20px 15px;
+    margin: 1px 15px 30px 15px;
     padding: 10px 10px 10px 10px;
     height: 30px;
     width: 200px;
@@ -52,7 +52,7 @@ form >.text{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 1px 15px 20px 15px;
+    margin: 1px 15px 30px 15px;
     padding: 10px 10px 10px 10px;
     height: 30px;
     width: 200px;
@@ -63,7 +63,7 @@ form >.text{
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    margin: 1px 15px 20px 15px;
+    margin: 1px 15px 30px 15px;
     padding: 5px;
     height: 100px;
     width: 80%;
@@ -71,7 +71,7 @@ form >.text{
     background-position: bottom right;
 	background-repeat: no-repeat;
     background-color: #e9e6e6;
-    border: 3px solid #cccccc;
+    border: 3px solid #1f64b3;
 	font-family: Tahoma, sans-serif;
     
 }
@@ -79,10 +79,13 @@ button{
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 50px;
+    text-align: center;
+    justify-items: center;
+    height: 40px;
     width: 100px;
     margin: 1px 15px 20px 15px;
-    border-radius: 15px 15px 15px 15px;
+    border-radius: 5px 5px 5px 5px;
+    background: #4583d4dc;
 }
 
 
@@ -117,3 +120,4 @@ button{
     font-size: 16px;
     color: #f80404;
 }
+

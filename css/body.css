@@ -12,7 +12,7 @@ body{
     padding: 0;
     height: 100%;
     width: 100vh;
-    background: transparent url("../images/Fondo\ actualizado.jpeg") center no-repeat;
+    background: transparent url("../images/nuevoFondo.png") center no-repeat;
     background-size: cover;
 }
 

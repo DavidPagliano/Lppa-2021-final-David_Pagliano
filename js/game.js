@@ -129,7 +129,7 @@ function timerImplementation() {
 
     var tiempo = new Date(60);
     Game.time = tiempo;
-    //Decremento 500 milisegundos
+    //Decremento 1 segundo
     var s = tiempo.getSeconds() - 1;
     tiempo.setSeconds(s);
 
