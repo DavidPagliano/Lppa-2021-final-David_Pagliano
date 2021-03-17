@@ -124,6 +124,7 @@ function setDefaultGameConfig() {
     storage.setItem("turn", 1);
     storage.setItem("time", 60);
     storage.setItem("playerCount", playerCount);
+    storage.setItem("state", "playing");
 }
 
 function validateName(name, number) {

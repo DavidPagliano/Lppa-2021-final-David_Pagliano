@@ -2,6 +2,8 @@ var Game = new Object();
 
 var coinRadius = 25;
 
+var maxProbability = 3;
+
 var timerInterval;
 
 window.onload = function () {
@@ -29,6 +31,7 @@ function loadGameConfig(storage) {
     Game.playerCount = parseInt(storage.getItem("playerCount"));
     Game.maxColumns = parseInt(storage.getItem("maxColumns"));
     Game.maxRows = parseInt(storage.getItem("maxRows"));
+    Game.state = storage.getItem("state");
 }
 
 function loadPlayerConfig(storage) {
@@ -80,7 +83,9 @@ function initializeCanvas() {
         console.log("click: x:" + x + " y:" + y);
         console.log("column: " + column);
 
-        putCoin(column);
+        if (Game.state == "playing") {
+            putCoin(column);
+        }
     }, false);
 }
 
@@ -127,51 +132,7 @@ function resumeGame() {
 
 function timerImplementation() {
 
-    var tiempo = new Date(60);
-    Game.time = tiempo;
-    //Decremento 1 segundo
-    var s = tiempo.getSeconds() - 1;
-    tiempo.setSeconds(s);
-
-    //Muestro la nueva fecha
-    var texto = rellenaCeros(Game.time.getMinutes()) + ":" + rellenaCeros(Game.time.getSeconds());
-    var spanTiempo = document.getElementById("tiempo");
-    spanTiempo.innerHTML = texto;
-    startGame();
-    //Compruebo el valor para cambiar el color del texto
-    if (Game.time.getSeconds() < 10) {
-        spanTiempo.style.color = "red";
-
-    }
-    else if (Game.time.getSeconds() < 30) {
-        spanTiempo.style.color = "orange";
-    }
-    else {
-        spanTiempo.style.color = "#0F0";
-    }
-
-    //Compruebo si llega a 0 para finalizar el juego o continuar
-    if (Game.time.getSeconds() <= 0) {
-        var mensaje = "¡Lo siento! Se ha terminado el tiempo.";
-        finalizar(mensaje);
-    }
-    else {
-        //Hago un loop para que se ejecute cada 1s
-        stop = setTimeout(timerImplementation, 1);
-    }
 }
-
-function rellenaCeros(numero) {
-
-    if (numero < 4) {
-        return "0" + numero;
-    }
-    else {
-        return numero;
-    }
-
-}
-
 
 function putCoin(column) {
     var hit;
@@ -194,7 +155,8 @@ function putCoin(column) {
         var player = Game.players.find(x => x.ID == Game.turn);
         Game.board[column][hit - 1].Owner = player;
         renderGame();
-        changeTurn();
+        checkWinCondition(column, hit - 1);
+        if (Game.state == "playing") changeTurn();
     }
 }
 
@@ -221,7 +183,137 @@ function changeTurn() {
         }
     }
     var renderElement = document.getElementById("currentturn");
-    renderElement.innerText = "Turno: " + player.Name;
+    renderElement.innerHTML = "Turn: <span style=\"color:" + player.Color + "\">" + player.Name + "</span>";
+}
+
+function checkWinCondition(x, y) {
+    checkVerticalWinCondition(x, y);
+    checkHorizontalWinCondition(x, y);
+    checkObliqueWinCondition(x, y);
+}
+
+function checkVerticalWinCondition(x, y) {
+    var hits = 1;
+    for (let i = 1; i <= maxProbability; i++) {
+        var y2 = y + i;
+        if (y2 < Game.maxRows) {
+            var player = Game.board[x][y2].Owner;
+            if (player !== undefined) {
+                if (player.ID == Game.turn) {
+                    hits++;
+                }
+            }
+        }
+        y2 = y - i;
+        if (y2 >= 0) {
+            player = Game.board[x][y2].Owner;
+            if (player !== undefined) {
+                if (player.ID == Game.turn) {
+                    hits++;
+                }
+            }
+        }
+    }
+    if (hits === 4) {
+        //gana jugador
+        showWinner();
+    }
+}
+
+function checkHorizontalWinCondition(x, y) {
+    var hits = 1;
+    for (let i = 1; i <= maxProbability; i++) {
+        var x2 = x + i;
+        if (x2 < Game.maxColumns) {
+            var player = Game.board[x2][y].Owner;
+            if (player !== undefined) {
+                if (player.ID == Game.turn) {
+                    hits++;
+                }
+            }
+        }
+        x2 = x - i;
+        if (x2 >= 0) {
+            player = Game.board[x2][y].Owner;
+            if (player !== undefined) {
+                if (player.ID == Game.turn) {
+                    hits++;
+                }
+            }
+        }
+    }
+    if (hits === 4) {
+        //gana jugador
+        showWinner();
+    }
+}
+
+function checkObliqueWinCondition(x, y) {
+    var hits = 1;
+    for (let i = 1; i <= maxProbability; i++) {
+        var x2 = x + i;
+        var y2 = y - i;
+        if (x2 < Game.maxColumns && y2 >= 0) {
+            var player = Game.board[x2][y2].Owner;
+            if (player !== undefined) {
+                if (player.ID == Game.turn) {
+                    hits++;
+                }
+            }
+        }
+        x2 = x - i;
+        y2 = y + i;
+        if (x2 >= 0 && y2 < Game.maxRows) {
+            player = Game.board[x2][y2].Owner;
+            if (player !== undefined) {
+                if (player.ID == Game.turn) {
+                    hits++;
+                }
+            }
+        }
+    }
+    if (hits === 4) {
+        //gana jugador
+        showWinner();
+        return;
+    }
+
+    //Inverse oblique line
+    hits = 1;
+    for (let i = 1; i <= maxProbability; i++) {
+        var x2 = x + i;
+        var y2 = y + i;
+        if (x2 < Game.maxColumns && y2 < Game.maxRows) {
+            var player = Game.board[x2][y2].Owner;
+            if (player !== undefined) {
+                if (player.ID == Game.turn) {
+                    hits++;
+                }
+            }
+        }
+        x2 = x - i;
+        y2 = y - i;
+        if (x2 >= 0 && y2 >= 0) {
+            player = Game.board[x2][y2].Owner;
+            if (player !== undefined) {
+                if (player.ID == Game.turn) {
+                    hits++;
+                }
+            }
+        }
+    }
+    if (hits === 4) {
+        //gana jugador
+        showWinner();
+        return;
+    }
+}
+
+function showWinner() {
+    var player = Game.players.find(x => x.ID === Game.turn);
+    var renderElement = document.getElementById("currentturn");
+    renderElement.innerHTML = "Congratulations!!<br/>The winner is <span style=\"color:" + player.Color + "\">" + player.Name + "</span>!!!";
+    Game.state = "ended";
 }
 
 function winner() {
@@ -249,53 +341,6 @@ function winner() {
     }
 }
 
-function check() {
-
-    //Chequeo de forma vertical
-    for (var i = 0; i < board.length; i++) {
-        for (var j = 0; j < 4; j++) {
-            if (board[i][j]) {
-                if (board[i][j] === (board[i][j + 1]) && board[i][j] === board[i][j + 2] &&
-                    board[i][j] === (board[i][j + 3])) {
-                    winner(board[i][j]);
-                }
-            }
-        }
-    }
-
-    for (var i = 0; i < board.length - 3; i++) {
-        for (var j = 0; j < 4; j++) {
-            if (board[i][j]) {
-                //Chequeo de forma horizontal
-                if (board[i][j] === (board[i + 1][j]) && board[i][j] === board[i + 2][j] &&
-                    board[i][j] === (board[i + 3][j])) {
-                    winner(board[i][j]);
-                }
-
-                //Chequeo de forma diagonal en incremento
-                if (board[i][j] === (board[i + 1][j + 1]) && board[i][j] === board[i + 2][j + 2] &&
-                    board[i][j] === (board[i + 3][j + 3])) {
-                    winner(board[i][j]);
-                }
-            }
-        }
-    }
-
-    //Chequeo de forma diagonal en descreciente
-    for (var i = 0; i < board.length - 3; i++) {
-        for (var j = 3; j < board[i].length; j++) {
-            if (board[i][j]) {
-                if (board[i][j] === (board[i + 1][j - 1]) && board[i][j] === board[i + 2][j - 2] &&
-                    board[i][j] === (board[i + 3][j - 3])) {
-                    winner(board[i][j]);
-                }
-            }
-        }
-    }
-
-}
-
-
 function startGame() {
-
+    //Timer
 }
