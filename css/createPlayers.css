@@ -25,11 +25,14 @@
 
 #board-p3 {
     display: none;
+    justify-content: center;
+
 }
 
 .Add {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     height: 50px;
     width: 100px;
@@ -47,4 +50,11 @@
     margin: 1px 15px 20px 15px;
     border-radius: 15px 15px 15px 15px;
     background:  #3062eb;
+}
+
+#buttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

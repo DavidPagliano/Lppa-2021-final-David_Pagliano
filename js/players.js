@@ -1,5 +1,8 @@
 "use strict";
 
+var Game = new Object();
+Game.players = new Array();
+
 var playerCount = 0;
 var baseMaxColumns = 7;
 var baseMaxRows = 6;
@@ -43,6 +46,8 @@ function createNewGame() {
 
     setBoardConfig();
 
+    saveGameConfig();
+
     // redirige toda la configuracion a game.html para utilizar los datos guardados
     window.location.href = "game.html";
 
@@ -61,46 +66,36 @@ function getIDValue(id) {
 }
 
 function createPlayer(name, color) {
-    playerCount++;
-    var currentPlayerNumber = playerCount;
-    var storage = window.localStorage;
+    var player;
+    var currentPlayerNumber = Game.players.length+1;
 
     if (name === "" || name === null || name.length < 3) {
         alert("The player " + currentPlayerNumber + "'s name is invalid.");
         setErrors();
-        playerCount--;
         return;
     }
 
     if (color === "" || color === null || color.length != 7) {
         alert("The player " + currentPlayerNumber + "'s color is invalid.");
         setErrors();
-        playerCount--;
         return;
     }
-    storage.setItem("playerName" + currentPlayerNumber, name);
-    storage.setItem("playerColor" + currentPlayerNumber, color);
+    
+    player = new Object();
+    player.ID = Game.players.length+1;
+    player.Name = name;
+    player.Color = color;
+
+    Game.players.push(player);
 }
 
 function setBoardConfig() {
-    var maxColumns = baseMaxColumns + (playerCount - 2) * 3;
-    var maxRows = baseMaxRows + (playerCount - 2) * 3;
-    var boardString = "";
-    var storage = window.localStorage;
-
-    storage.setItem("maxColumns", maxColumns);
-    storage.setItem("maxRows", maxRows);
-
-    for (let i = 0; i < maxColumns; i++) {
-        for (let j = 0; j < maxRows; j++) {
-            // permite guardar las columnas y filas dependiendo la cantidad de jugadores
-            var result = "0" + (j == maxRows - 1 ? "" : "-");
-            boardString += result;
-        }
-        boardString += i == maxColumns - 1 ? "" : "|";
-    }
-
-    storage.setItem("board", boardString);
+    var maxColumns = baseMaxColumns + (Game.players.length - 2) * 3;
+    var maxRows = baseMaxRows + (Game.players.length - 2) * 3;
+    var board = Array.from(Array(maxColumns), () => new Array(maxRows));
+    Game.maxColumns = maxColumns;
+    Game.maxRows = maxRows;
+    Game.board = board;
 }
 
 function hasErrors() {
@@ -119,18 +114,20 @@ function setErrors() {
 }
 
 function setDefaultGameConfig() {
-    var storage = window.localStorage;
-
-    storage.setItem("turn", 1);
-    storage.setItem("time", 60);
-    storage.setItem("playerCount", playerCount);
-    storage.setItem("state", "playing");
+    Game.turn = 1;
+    Game.time = 60;
+    Game.state = "playing";
 }
 
-function validateName(name, number) {
-    if (name === "" || name === null || name.lenght > 3) {
-        alert("el nombre del jugador " + number + " es invalido");
-        return false;
+function saveGameConfig()
+{
+    var savedGames = JSON.parse(window.localStorage.getItem("savedGames"));
+    var game;
+    if(savedGames === null || savedGames === undefined)
+    {
+        savedGames = new Array();
     }
-    return true;
+    Game.ID = savedGames.length !== 0 ? savedGames.length : 1;
+    game = JSON.stringify(Game);
+    window.localStorage.setItem("currentGame", game);
 }

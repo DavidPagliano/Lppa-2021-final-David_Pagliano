@@ -10,24 +10,20 @@
         <link rel="stylesheet" href="css/body.css">
         <link rel="stylesheet" href="css/contact.css">
         <!--Scritp-->
-        <script src="js/contact.js"></script>
+        <script src="js/validation.js"></script>
     </head>
     <body>
         <div id="container">
             <div class="contact">
                 <form>
-                    <input id="textName" autofocus class="text" minlength="3" maxlength="8" type="text" name="Name"
+                    <input id="textName" class="text" minlength="3" maxlength="8" type="text" name="Name"
                         placeholder="Name...">
-                    <div id="errorName" class="error"></div>
-
-                    <input id="textEmail" autofocus class="text" type="text" name="Email" placeholder="Email...">
-                    <div id="errorEmail" class="error"></div>
-
-                    <textarea id="textMessage" autofocus class="text" name="Message"
-                        placeholder="Message...."></textarea>
-                    <div id="errorMessage" class="error"></div>
-
-                    <button id="Enviar" type="submit" name="Enviar">Send message</button>
+                    <div id="errorName"></div>
+                    <input id="textEmail" class="text" type="text" name="Email" placeholder="Email...">
+                    <div id="errorEmail"></div>
+                    <textarea id="textMessage" class="text" name="Message" placeholder="Message...."></textarea>
+                    <div id="errorMessage"></div>
+                    <button id="Enviar" type="submit" name="Enviar" onsubmit="prevent()">Send message</button>
                 </form>
             </div>
         </div>

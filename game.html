@@ -16,12 +16,15 @@
     <body>
         <div id="container-players">
             <div class="wrapper">
-                <div class="header"></div>
                 <div class="game">
-                    <div id="currentturn"></div>
-                    <div class="timer">00:00</div>
+                    <div class="header">
+                        <div id="currentturn"></div>
+                        <span id="timer">00:00</span>
+                        <button onclick="saveGame()">Save game</button>
+                    </div>
+
                     <div class="board">
-                        <canvas id="board" width="300" height="150" style="border:1px solid #d3d3d3;">
+                        <canvas id="board" class="canvas" width="300" height="150" style="border:1px solid #d3d3d3;">
                             Tu navegador no soporta HTML5.</canvas>
                     </div>
                     <div class="ribbon"></div>

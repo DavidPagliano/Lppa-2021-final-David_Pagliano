@@ -13,19 +13,71 @@ body{
     margin: 10px;
     padding: 0;
 }
-
+h1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 50px;
+}
 .board-saved, .content-saved{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 50%;
-    height: 75%;
-    margin: 250px 250px 250px 650px;
+    width: 45%;
+    height: 65%;
+    margin: 250px 250px 250px 780px;
     padding: 0 0 50px;
     background:  #163999;
     opacity: 80%;
     color: #fff; 
     border-radius: 5px 5px 5px 5px;
+}
+
+#game-playing, #game-ended{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 400px;
+    height: 75px;
+    margin: 20px;
+    padding: 10px;
+    background:  #3776be;
+    opacity: 80%;
+    color: #fff; 
+    border-radius: 5px 5px 5px 5px;
+}
+
+#state-game{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width:  40px;
+    height: 75px;
+    margin: 80px;
+    padding: 50px;
+    background:  #3776be;
+    opacity: 80%;
+    color: #fff; 
+    border-radius: 5px 5px 5px 5px;
+}
+#state-game > button{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+#players{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 25%;
+    height: 35%;
+    margin: 50px 50px 50px 50px;
+    background:  #379ebe;
+    opacity: 80%;
+    color: #fff; 
+    border-radius: 5px 5px 5px 5px;
+
 }
 
 #game-menu h1{

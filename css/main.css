@@ -7,7 +7,7 @@ body{
 #container-menu{
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
     width: 100vh;
     height: 100%;
     margin: 10px;
@@ -20,7 +20,7 @@ body{
     justify-content: center;
     width: 50%;
     height: 75%;
-    margin: 250px 250px 250px 720px;
+    margin: 250px 250px 250px 780px;
     padding: 0 0 20px;
     background:  #163999;
     opacity: 80%;
@@ -33,7 +33,7 @@ body{
     flex-direction: column;
     text-align: center;
     margin: 0;
-    padding: 0 0 20px;
+    padding: 0 20px;
     font-size: 22px;
 }
 
@@ -42,7 +42,7 @@ body{
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    margin: 25px 25px 25px 135px;
+    margin: 10px 20px 30px 135px;
     padding: 10px;
     height: 50px;
     width: 200px;
@@ -53,5 +53,3 @@ body{
     color: #dbd7d7;
     background:  #4583d4dc;
 }
-
-
